@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>andrew rowe - programming problems</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../styles.css">
+		<style>
+			.ml-15 {
+				margin-left: 30px;
+			}
+		</style>
+  </head>
+  <body>
+    <h1 id="paging-problem">paging problem</h1>
+		<p>"we've got all this data, and no way to split it up" - sir isaac newton</p>
+		<h2 id="motivation">motivation</h2>
+		<p>when displaying data in a grid (a grid is just a table for all intents and purposes), it is a good idea to break it into smaller "pages" when the number of rows become large. this means that, even if the total number of rows in a grid is... say, 1,000... we only show... say, 50... rows at a time. showing smaller sections reduces resource usage by the UI. additionally, if we are working with a REST api, we use less network bandwidth, and we reduce the time for the data access to be performed</p>
+		<p>one of the components involved in paging are the buttons at the bottom of the grid that allow a user to choose which page they would like to navigate. typically, these "pagination buttons" provide a way for a user to navigate to the "previous" page, the "next" page, and directly to a few local pages (sometimes there are "first", "last", and "jump <i>n</i> pages" buttons, but we are not worried about that now). there is also typically some indicator of the current page that is being shown</p>
+		<p>the example below shows what this may look like in practice</p>
+		<table id="paging-example">
+			<thead>
+				<tr>
+					<th>first name</th>
+					<th>last name</th>
+					<th>band</th>
+					<th>instrument</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>jack</td>
+					<td>white</td>
+					<td>the white stripes</td>
+					<td>guitar</td>
+				</tr>
+				<tr>
+					<td>janis</td>
+					<td>joplin</td>
+					<td>janis joplin and the kozmic blues band</td>
+					<td>vocals</td>
+				</tr>
+				<tr>
+					<td>john</td>
+					<td>bonham</td>
+					<td>led zeppelin</td>
+					<td>drums</td>
+				</tr>
+				<tr>
+					<td>john</td>
+					<td>lennon</td>
+					<td>the beatles</td>
+					<td>guitar</td>
+				</tr>
+				<tr>
+					<td>justin</td>
+					<td>timberlake</td>
+					<td>nsync</td>
+					<td>vocals</td>
+				</tr>
+			</tbody>
+		</table>
+		<div>
+			<span><a href="javascript:void(0);" style="text-decoration:none">prev</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">4</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">5</a></span>
+			<span><a href="javascript:void(0);">6</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">7</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">8</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">next</a></span>
+		</div>
+		<h2 id="problem">problem</h2>
+		<p>write a function that returns a list of objects that model the state of pagination buttons for a data set with <i>n</i> total entries, a page size of <i>p</i>, and a current page of <i>c</i></p>
+		<h2 id="requirements">requirements</h2>
+		<ol>
+			<li>the "prev" and "next" buttons must always be shown</li>
+			<li>if the current page is <i>1</i>, the "prev" button is disabled</li>
+			<li>if the current page is <i>n</i>, the "next" button is disabled</li>
+			<li>ideally, we want to show 5 number buttons</li>
+			<li>the current page should be centered when possible</li>
+			<li>if the current page cannot be centered, it is okay if it is offset</li>
+		</ol>
+		<h2 id="visual-examples">visual examples</h2>
+		<p>standard (note: an underlined number denotes the "current page")</p>
+		<div class="ml-15">
+			<span><a href="javascript:void(0);" style="text-decoration:none">prev</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">4</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">5</a></span>
+			<span><a href="javascript:void(0);">6</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">7</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">8</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">next</a></span>
+		</div>
+		<p>"prev" disabled</p>
+		<div class="ml-15">
+			<span>prev</span>
+			<span><a href="javascript:void(0);">1</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">2</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">3</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">4</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">5</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">next</a></span>
+		</div>
+		<p>"next" disabled</p>
+		<div class="ml-15">
+			<span><a href="javascript:void(0);" style="text-decoration:none">prev</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">99</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">100</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">101</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">102</a></span>
+			<span><a href="javascript:void(0);">103</a></span>
+			<span>next</span>
+		</div>
+		<p>edge case (current page not centered)</p>
+		<div class="ml-15">
+			<span><a href="javascript:void(0);" style="text-decoration:none">prev</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">1</a></span>
+			<span><a href="javascript:void(0);">2</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">3</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">4</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">5</a></span>
+			<span><a href="javascript:void(0);" style="text-decoration:none">next</a></span>
+		</div>
+		<h2 id="hints">hints</h2>
+		<p>hint #1: it may be helpful to think of the pagination button objects with these attributes</p>
+		<pre>const paginationButton = {
+  value: ...,
+  isDisabled: ...,
+  isCurrentPage: ...
+}</pre>
+		<p>hint #2: here's a function signature that may help get you started</p>
+		<pre>// n: total number of rows in data set
+// p: page size
+// c: current page
+function getPaginationButtons(n, p, c) {
+  // code goes here
+}</pre>
+	<p>hint #3: knowing the total number of pages would probably be useful</p>
+	<h2 id="follow-up">follow up</h2>
+	<p>what happens if you only have enough data to make 3 pages, when we need 5?</p>
+	<p>what happens if there is no data, or only 1 page?</p>
+	<h2 id="notes">notes</h2>
+	<p>you don't have to make a function. you could use an object oriented approach</p>
+	<p>you don't have to use javascript</p>
+  </body>
+</html>
