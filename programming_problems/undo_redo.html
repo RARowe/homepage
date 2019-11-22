@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>andrew rowe - programming problems</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="/styles.css">
 		<style>
 			.ml-15 {
 				margin-left: 30px;
@@ -17,7 +17,7 @@
 		<h2 id="motivation">motivation</h2>
 		<p>when working in any kind of computer program (a text editor, word processor, slide show creator, art program, and, now, browsers), it is important for us to be able to quickly eliminate the mistakes that we have made. this is one of the benefits of working on a computer. by being able to step backward (and forward) through the changes we make to an electronic document, we are essentially stepping through time!</p>
 		<p>most common undo functionality operates similarly to the diagram below:</p>
-		<img id="undo-flow" src="../images/undo_redo/undo_flow.jpg" title="undo flow" alt="image not available">
+		<img id="undo-flow" src="images/undo_flow.jpg" title="undo flow" alt="image not available">
 		<p>in this example we make four edits, we ctrl+z (undo) twice, and then proceed to make new edits. the original edits ("3" and "4") are lost, and a new branch of edits is created</p>
 		<p>if we were to redo once after undoing from state "4" to state "2" (with no "new edit"), we would be back at state "3"</p>
 		<p>if we were to keep redoing after undoing from state "6" to state "1", we would ultimately end in state "6", again</p>
