@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Andrew Rowe - About this page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <h1 id="about-this-page">About this page</h1>
+		<p>... or "Technology is unfortunate" (because "Technology is terrible" is too inflamatory)</p>
+    <p><a href="about.html?showAds=true">Show ads</a></p>
+		<h2 id="a-place-for-me">A place for me</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sodales augue augue, ac gravida sapien ullamcorper non. Nulla ornare lorem maximus nisi pharetra suscipit. Pellentesque rhoncus faucibus leo vitae euismod. Etiam eget molestie leo, pharetra convallis lorem. Donec mollis nulla et tellus porttitor ultricies. Nullam lorem enim, ullamcorper non tellus vel, tincidunt dapibus urna. Ut vitae lorem felis. Aenean nec gravida lorem. Curabitur sed iaculis mauris, ac semper sapien. <img id="ad-one"/>Duis rhoncus eget mauris eu vulputate. Fusce id aliquet tortor. Fusce et tincidunt ex, porttitor mattis arcu. Fusce nec magna pretium, hendrerit lacus ut, lobortis ipsum. Nam tincidunt, enim quis consectetur semper, libero arcu congue sem, non ultricies felis ipsum in tellus. Vestibulum risus enim, molestie ut purus eget, tincidunt tincidunt augue. Nam porttitor id sem vitae dictum.</p>
+		<h2 id="a-place-for-me">Subheading 2</h2>
+    <p>Donec a cursus arcu. Quisque vitae turpis a enim varius tincidunt at et neque. Maecenas sit amet semper lectus. Nunc ut sapien tristique, bibendum nibh a, dictum risus. Sed efficitur dolor odio, porta lacinia mauris scelerisque id. Vivamus iaculis nulla dui, vel laoreet mauris dapibus ultricies. In varius vitae eros vel sollicitudin. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam lacinia pulvinar lacus, a tincidunt est porta quis. Integer sit amet enim lectus. Fusce pulvinar sapien a odio interdum, a tempus eros dictum. Sed quam lorem, vehicula ac dolor id, vehicula rhoncus augue. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Integer iaculis quam lectus, nec ullamcorper quam feugiat sed.</p>
+    <div id="move-more-button-image">
+      <img id="ad-two" />
+    </div>
+    <div id="more-button">
+      <button>Show more</button>
+    </div>
+    <div class="hide-this-section">
+		  <h2 id="a-place-for-me">Subheading 3</h2>
+      <p>Praesent viverra urna purus, non sollicitudin tortor laoreet eleifend. Nullam vulputate diam non congue bibendum. Quisque laoreet porttitor velit sed laoreet. Sed neque libero, eleifend a facilisis et, dapibus eu lorem. Vivamus cursus convallis turpis, a venenatis metus tempus sollicitudin. Vestibulum rhoncus mattis massa, sed iaculis metus tincidunt vitae. Maecenas elementum suscipit blandit. Ut egestas turpis non condimentum posuere.</p>
+    </div>
+    <div class="hide-this-section">
+		  <h2 id="a-place-for-me">Subheading 4</h2>
+      <p>Integer semper mollis lobortis. Nulla aliquet, nulla sed ultrices gravida, dolor libero rhoncus est, vitae egestas felis risus eget felis. Duis accumsan condimentum fringilla. In vitae interdum odio. Nulla fermentum, enim id tempus malesuada, lorem augue ullamcorper lacus, id vulputate lectus urna sed mauris. Nunc eget urna vel mi placerat mollis. Praesent elementum tempor gravida. Maecenas est risus, porttitor at arcu ut, hendrerit malesuada sem. Suspendisse aliquet massa non velit pulvinar commodo. Etiam ipsum est, luctus ut ultrices id, commodo vitae justo.</p>
+    </div>
+    <div class="hide-this-section">
+		  <h2 id="a-place-for-me">Subheading 5</h2>
+      <p>Nunc molestie sit amet dolor ac consequat. Fusce finibus nibh sed enim iaculis, a tristique mi rutrum. Morbi ac orci eget orci luctus tempor eget faucibus nunc. Donec vehicula pellentesque orci at pretium. Suspendisse potenti. Mauris porttitor volutpat orci eu gravida. Vestibulum viverra mattis arcu, bibendum maximus mi scelerisque sed. Mauris laoreet felis id tristique pretium. Etiam non sem non est scelerisque molestie bibendum vel turpis. Donec fringilla, sapien sed congue fringilla, lorem libero fringilla urna, cursus fermentum velit risus non elit. Quisque vitae tellus ac mi ullamcorper dignissim. Nam risus elit, porttitor sollicitudin mauris in, tincidunt dictum enim. Nullam convallis nisl vitae odio tincidunt aliquam. Fusce blandit ornare risus id bibendum.</p>
+    </div>
+  </body>
+  <style>
+    img {
+      -webkit-transition: opacity 4s ease-in-out;
+      transition: opacity 4s ease-in-out;
+    }
+
+    button {
+      border: 3px solid grey;
+      color: grey;
+      cursor: pointer;
+      padding: 15px 32px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+    }
+
+    #more-button {
+      display: none;
+      text-align: center;
+    }
+
+    #move-more-button-image {
+      display: none;
+    }
+  </style>
+  <script>
+    function forEach(elements, fn) {
+      for (var i = 0; i < elements.length; i++) {
+        fn(elements[i]);
+      }
+    }
+
+    function loadImages() {
+      var imgTags = document.getElementsByTagName('img');
+
+      forEach(imgTags, function (img) {
+        img.src = 'images/about/' + img.id + '.jpg';
+        img.alt = 'Image not available';
+      });
+    }
+
+    function hideBottomSections() {
+      var hiddenSections = document.getElementsByClassName('hide-this-section');
+
+      forEach(hiddenSections, function (section) {
+        section.style.display = 'none';
+      });
+    }
+
+    function showMoreButton() {
+      document.getElementById('more-button').style.display = 'block';
+    }
+
+    function loadRandomImageWhenHoveringMoreButton() {
+      document.getElementById('more-button').onmouseover = function() {
+        document.getElementById('move-more-button-image').style.display = 'block';
+      };
+    }
+
+    var showAds = window.location.search.indexOf("showAds=true") > 0;
+    if (showAds) {
+      loadImages();
+      hideBottomSections();
+      showMoreButton();
+      loadRandomImageWhenHoveringMoreButton();
+    }
+  </script>
+</html>
