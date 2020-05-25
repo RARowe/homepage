@@ -1,0 +1,26 @@
+<h1 id="undo-redo-problem">Undo/Redo Problem</h1>
+<p>"Here's a riddle for you... even though I'm far from the point, I don't make mistakes, I fix yours. What am I? The Microsoft Word ctrl+z/ctrl+y." - Timmy Turner</p>
+<h2 id="motivation">Motivation</h2>
+<p>When working in any kind of computer program (a text editor, word processor, slide show creator, art program, and, now, browsers), it is important for us to be able to quickly eliminate the mistakes that we have made. This is one of the benefits of working on a computer. By being able to step backward (and forward) through the changes we make to an electronic document, we are essentially stepping through time!</p>
+<p>Most common undo functionality operates similarly to the diagram below:</p>
+<img id="undo-flow" src="images/undo_flow.jpg" title="undo flow" alt="image not available">
+<p>In this example we make four edits, we ctrl+z (undo) twice, and then proceed to make new edits. The original edits ("3" and "4") are lost, and a new branch of edits is created</p>
+<p>If we were to redo once after undoing from state "4" to state "2" (with no "new edit"), we would be back at state "3"</p>
+<p>If we were to keep redoing after undoing from state "6" to state "1", we would ultimately end in state "6", again</p>
+<h2 id="problem">Problem</h2>
+<p>Given, you have a working word processor application, and the ability to programmatically interact with it via an api (you can have any api call you need), design how the undo/redo functionality works. In other words, how would you keep track of changes to apply/un-apply to an electronic document?</p>
+<p><b>Note: This problem is intended to be intentionally open-ended, and would be asked to a more experienced junior, or entry-level senior, developer</b></p>
+<h2 id="requirements">Requirements</h2>
+<p>This problem is intended to be open ended, and should be taken as a "high level architecture" design question</p>
+<p>The undo/redo flow should be similar to the image above</p>
+<h2 id="some-probing-questions">Some Probing Questions</h2>
+<ol>
+	<li>How would you make sure your design allows for thousands of tracked changes on large documents?</li>
+	<li>How well does your design scale? For example, at first, maybe you only allow text add/move/delete, but what if more features like changing the size, color, and style of fonts are added? Does your code explode?</li>
+	<li>What about your design makes it easy for others to add changes?</li>
+</ol>
+<h2 id="hints">Hints</h2>
+<p>Hint #1: If you chose to use an object oriented approach, are there any common design patterns that would help?</p>
+<p>Hint #2: Applying a change and undoing that change are equally important. Can you create a structure that keeps track of both?</p>
+<h2 id="follow-up">Follow Up</h2>
+<p>Does an "undo/redo" pattern have any applications outside of editing electronic documents?</p>
